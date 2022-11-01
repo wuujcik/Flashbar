@@ -3,14 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'flashbar'
-
-    publishedGroupId = 'com.andrognito.flashbar'
-    libraryName = 'flashbar'
-    artifact = 'flashbar'
-
-    libraryDescription = 'A highly customizable, powerful and easy-to-use alerting library for Android.'
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 33
+    androidCompileSdkVersion = 33
+    androidBuildToolsVersion = '30.0.3'
+    kotlin_version = "1.6.20"
 
     siteUrl = 'https://github.com/aritraroy/Flashbar'
     gitUrl = 'https://github.com/aritraroy/Flashbar.git'
@@ -27,11 +24,12 @@ ext {
 }
 
 android {
-    compileSdkVersion versions.sdkTarget
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion versions.sdkMin
-        targetSdkVersion versions.sdkTarget
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 3
         versionName "1.0.2"
 
@@ -40,9 +38,6 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$versions.supportVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
-
-apply from: 'https://raw.githubusercontent.com/aritraroy/LibUtils/master/install.gradle'
-apply from: 'https://raw.githubusercontent.com/aritraroy/LibUtils/master/upload.gradle'

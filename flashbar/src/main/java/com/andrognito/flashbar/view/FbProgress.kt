@@ -187,19 +187,19 @@ class FbProgress : View {
     public override fun onSaveInstanceState(): Parcelable? {
         val superState = super.onSaveInstanceState()
 
-        val ss = WheelSavedState(superState)
+        val ss = superState?.let { WheelSavedState(it) }
 
-        ss.mProgress = this.progress
-        ss.mTargetProgress = this.targetProgress
-        ss.isSpinning = this.isSpinning
-        ss.spinSpeed = this.spinSpeed
-        ss.barWidth = this.barWidth
-        ss.barColor = this.barColor
-        ss.rimWidth = this.rimWidth
-        ss.rimColor = this.rimColor
-        ss.circleRadius = this.circleRadius
-        ss.linearProgress = this.linearProgress
-        ss.fillRadius = this.fillRadius
+        ss?.mProgress = this.progress
+        ss?.mTargetProgress = this.targetProgress
+        ss?.isSpinning = this.isSpinning
+        ss?.spinSpeed = this.spinSpeed
+        ss?.barWidth = this.barWidth
+        ss?.barColor = this.barColor
+        ss?.rimWidth = this.rimWidth
+        ss?.rimColor = this.rimColor
+        ss?.circleRadius = this.circleRadius
+        ss?.linearProgress = this.linearProgress
+        ss?.fillRadius = this.fillRadius
 
         return ss
     }
@@ -545,6 +545,7 @@ class FbProgress : View {
         }
 
         companion object {
+            @JvmField
             val CREATOR: Parcelable.Creator<WheelSavedState> = object : Parcelable.Creator<WheelSavedState> {
                 override fun createFromParcel(`in`: Parcel): WheelSavedState {
                     return WheelSavedState(`in`)
